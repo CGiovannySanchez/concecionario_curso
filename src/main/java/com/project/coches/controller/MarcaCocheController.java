@@ -44,7 +44,7 @@ public class MarcaCocheController {
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(iMarcaCocheService.save(marcaCochePojoNew));
         }catch(Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
 
 
