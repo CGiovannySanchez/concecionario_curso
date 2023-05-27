@@ -1,6 +1,6 @@
 package com.project.coches.domain.service;
 
-import com.project.coches.domain.pojo.MarcaCochePojo;
+import com.project.coches.domain.dto.MarcaCocheDto;
 import com.project.coches.domain.repository.IMarcaCocheRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class MarcaCocheService implements IMarcaCocheService{
      * @return Lista con ,marcas de coches
      */
     @Override
-    public List<MarcaCochePojo> getAll() {
+    public List<MarcaCocheDto> getAll() {
         return iMarcaCocheRepository.getAll();
     }
 
@@ -36,7 +36,7 @@ public class MarcaCocheService implements IMarcaCocheService{
      * @return Optional del marca coche encontrado
      */
     @Override
-    public Optional<MarcaCochePojo> getMarcaCoche(Integer id) {
+    public Optional<MarcaCocheDto> getMarcaCoche(Integer id) {
         return iMarcaCocheRepository.getMarcaCoche(id);
     }
 
@@ -47,8 +47,23 @@ public class MarcaCocheService implements IMarcaCocheService{
      * @return Marca coche guardada
      */
     @Override
-    public MarcaCochePojo save(MarcaCochePojo newMarcaCoche) {
+    public MarcaCocheDto save(MarcaCocheDto newMarcaCoche) {
         return iMarcaCocheRepository.save(newMarcaCoche);
+    }
+
+
+    /**
+     * Actualiza una marca coche
+     * @param newMarcaCoche Marca coche Actualizar
+     * @return Optional con marca Coche Actualizado
+     */
+    @Override
+    public Optional<MarcaCocheDto> update(MarcaCocheDto newMarcaCoche) {
+        if(iMarcaCocheRepository.getMarcaCoche(newMarcaCoche.getId()).isEmpty()){
+            return Optional.empty();
+        }
+
+        return Optional.of(iMarcaCocheRepository.save(newMarcaCoche));
     }
 
 
@@ -59,11 +74,12 @@ public class MarcaCocheService implements IMarcaCocheService{
      */
     @Override
     public boolean delete(Integer idMarcaCoche) {
-        try{
-            iMarcaCocheRepository.delete(idMarcaCoche);
-            return true;
-        }catch (Exception e){
+
+        if(iMarcaCocheRepository.getMarcaCoche(idMarcaCoche).isEmpty()){
             return false;
         }
+        iMarcaCocheRepository.delete(idMarcaCoche);
+        return true;
+
     }
 }

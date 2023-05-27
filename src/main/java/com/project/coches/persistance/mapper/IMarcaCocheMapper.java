@@ -1,6 +1,6 @@
 package com.project.coches.persistance.mapper;
 
-import com.project.coches.domain.pojo.MarcaCochePojo;
+import com.project.coches.domain.dto.MarcaCocheDto;
 import com.project.coches.persistance.entity.MarcaCocheEntity;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
@@ -21,7 +21,7 @@ public interface IMarcaCocheMapper {
      */
     @Mapping(source = "id", target = "id")
     @Mapping(source = "description", target = "description")
-    MarcaCochePojo toMarcaCochePojo(MarcaCocheEntity marcaEntity);
+    MarcaCocheDto toMarcaCochePojo(MarcaCocheEntity marcaEntity);
 
 
     /**
@@ -30,12 +30,12 @@ public interface IMarcaCocheMapper {
      * @return Entity convertido
      */
     @InheritInverseConfiguration
-    MarcaCocheEntity toMarcaCocheEntity(MarcaCochePojo marcaPojo);
+    MarcaCocheEntity toMarcaCocheEntity(MarcaCocheDto marcaPojo);
 
     /**
      * Retorna una lista de marcas coche transformada a pojo de uam lista de entidades
      * @param marcasCocheEntity Entidad a trasnsformar
      * @return Lista transformada
      */
-    List<MarcaCochePojo> toMarcasCochePojo(List<MarcaCocheEntity> marcasCocheEntity);
+    List<MarcaCocheDto> toMarcasCochePojo(List<MarcaCocheEntity> marcasCocheEntity);
 }
