@@ -36,7 +36,7 @@ public class MarcaCocheRepository implements IMarcaCocheRepository {
      */
     @Override
     public List<MarcaCocheDto> getAll() {
-        return iMarcaCocheMapper.toMarcasCochePojo(iMarcaCocheCrudRepository.findAll());
+        return iMarcaCocheMapper.toMarcasCocheDto(iMarcaCocheCrudRepository.findAll());
     }
 
 
@@ -48,7 +48,7 @@ public class MarcaCocheRepository implements IMarcaCocheRepository {
     @Override
     public Optional<MarcaCocheDto> getMarcaCoche(Integer id) {
         return iMarcaCocheCrudRepository.findById(id)
-                .map(iMarcaCocheMapper::toMarcaCochePojo);
+                .map(iMarcaCocheMapper::toMarcaCocheDto);
 
          // .map(marcaCocheEntity -> iMarcaCocheMapper.toMarcaCochePojo(marcaCocheEntity)); LAMBDA
          // .map(iMarcaCocheMapper::toMarcaCochePojo); Metodo por REFERENCIA
@@ -63,7 +63,7 @@ public class MarcaCocheRepository implements IMarcaCocheRepository {
     @Override
     public MarcaCocheDto save(MarcaCocheDto newMarcaCoche) {
         MarcaCocheEntity marcaCocheEntity = iMarcaCocheMapper.toMarcaCocheEntity(newMarcaCoche);
-        return iMarcaCocheMapper.toMarcaCochePojo(iMarcaCocheCrudRepository.save(marcaCocheEntity));
+        return iMarcaCocheMapper.toMarcaCocheDto(iMarcaCocheCrudRepository.save(marcaCocheEntity));
     }
 
 

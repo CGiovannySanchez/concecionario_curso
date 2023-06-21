@@ -5,6 +5,9 @@ import com.project.coches.domain.dto.MarcaCocheDto;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Interface del repositorio Marca Coche
+ */
 public interface IMarcaCocheRepository {
 
     /**

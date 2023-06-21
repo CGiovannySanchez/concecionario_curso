@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import java.util.List;
 
 /**
- * Mapper que transforma objetos de marca Coche a pojos o entidades
+ * Mapper que transforma objetos de marca Coche a Dtos o entidades
  */
 @Mapper(componentModel = "spring")
 public interface IMarcaCocheMapper {
@@ -17,25 +17,25 @@ public interface IMarcaCocheMapper {
     /**
      * Convierte una entidad a un pojo de marca coche
      * @param marcaEntity Entidad a convertir
-     * @return Pojo convertido
+     * @return Dto convertido
      */
     @Mapping(source = "id", target = "id")
     @Mapping(source = "description", target = "description")
-    MarcaCocheDto toMarcaCochePojo(MarcaCocheEntity marcaEntity);
+    MarcaCocheDto toMarcaCocheDto(MarcaCocheEntity marcaEntity);
 
 
     /**
-     * Convierte un pojo a una entidad de marca coche
-     * @param marcaPojo Pojo a convertir
+     * Convierte un Dto a una entidad de marca coche
+     * @param marcaPojo  a convertir
      * @return Entity convertido
      */
     @InheritInverseConfiguration
-    MarcaCocheEntity toMarcaCocheEntity(MarcaCocheDto marcaPojo);
+    MarcaCocheEntity toMarcaCocheEntity(MarcaCocheDto marcaDto);
 
     /**
      * Retorna una lista de marcas coche transformada a pojo de uam lista de entidades
      * @param marcasCocheEntity Entidad a trasnsformar
      * @return Lista transformada
      */
-    List<MarcaCocheDto> toMarcasCochePojo(List<MarcaCocheEntity> marcasCocheEntity);
+    List<MarcaCocheDto> toMarcasCocheDto(List<MarcaCocheEntity> marcasCocheEntity);
 }
